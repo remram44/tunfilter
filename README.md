@@ -31,3 +31,11 @@ Example, on local system:
 ip addr add 10.0.44.2/24 dev tunf
 ip link set tunf up
 ```
+
+# How it works
+
+tunfilter reads packets on stdin and writes on stdout. They are in the tun packet format, each packet prefixed by its 2-byte big endian length.
+
+hex.py is a simple filter that encode/decodes bytes into hexadecimal, so the data can go over a text terminal more easily. By writing your own filter, you should be able to make tunfilter work over IRC or any other text channel.
+
+Make sure no buffering happens in either direction, or packets may be delayed indefinitely.
